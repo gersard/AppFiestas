@@ -33,17 +33,21 @@
             android:orientation="vertical"
             android:padding="50dp">
 
-            <Button
+            <com.facebook.login.widget.LoginButton
                 android:id="@+id/btn_login_facebook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:layout_marginBottom="6dp"
-                android:text="Login Facebook" />
+                android:textSize="16dp"/>
 
             <Button
                 android:id="@+id/btn_login_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:text="Login Google" />
 
         </LinearLayout>
