@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.facebook.CallbackManager;
 
+import cl.gerardomascayano.appfiestas.model.Account;
 import cl.gerardomascayano.appfiestas.view.activity.LoginActivity;
 import cl.gerardomascayano.appfiestas.model.interactor.InterfacesInteractor;
 import cl.gerardomascayano.appfiestas.model.interactor.LoginInteractorImpl;
@@ -26,9 +27,9 @@ public class LoginPresenterImpl implements InterfacesPresenter.LoginPresenter{
     }
 
     @Override
-    public void onLoginSuccess() {
+    public void onLoginSuccess(Account account) {
         if (loginView != null) {
-            loginView.loginSuccess();
+            loginView.loginSuccess(account);
         }
     }
 

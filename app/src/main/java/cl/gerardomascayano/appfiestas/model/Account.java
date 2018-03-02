@@ -9,8 +9,9 @@ public class Account {
     private String email;
     private String name;
 
-    public Account(String email) {
+    public Account(String email, String name) {
         this.email = email;
+        this.name = name;
     }
 
     public String getEmail() {

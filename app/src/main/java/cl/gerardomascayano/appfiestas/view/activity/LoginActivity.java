@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cl.gerardomascayano.appfiestas.R;
+import cl.gerardomascayano.appfiestas.model.Account;
 import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
 import cl.gerardomascayano.appfiestas.presenter.LoginPresenterImpl;
 import cl.gerardomascayano.appfiestas.view.InterfacesView;
@@ -80,8 +82,10 @@ public class LoginActivity extends AppCompatActivity implements InterfacesView.L
     }
 
     @Override
-    public void loginSuccess() {
-        Toast.makeText(this, "Login Exitoso", Toast.LENGTH_SHORT).show();
+    public void loginSuccess(Account account) {
+        Intent intent = new Intent(getApplicationContext(),ActualizarDatosActivity.class);
+        intent.putExtra("account",new Gson().toJson(account));
+        startActivity(intent);
     }
 
     @Override

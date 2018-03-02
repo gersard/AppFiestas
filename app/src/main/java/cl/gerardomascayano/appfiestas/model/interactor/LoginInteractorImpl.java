@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.Arrays;
 
+import cl.gerardomascayano.appfiestas.model.Account;
 import cl.gerardomascayano.appfiestas.view.activity.LoginActivity;
 import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
 
@@ -86,7 +87,7 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
                 Log.d("respuesta_profile", "First Name:" + profile.getProfilePictureUri(800, 600));
 
                 if (loginPresenter != null) {
-                    loginPresenter.onLoginSuccess();
+                    loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName()));
                 }
 
             }
@@ -130,7 +131,7 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
             Log.d("NFO", "Photo Uri: " + account.getPhotoUrl());
 //                    Log.d("NFO","Photo Uri: "+account.getAccount().name);
             if (loginPresenter != null) {
-                loginPresenter.onLoginSuccess();
+                loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName()));
             }
 
         } catch (ApiException e) {
@@ -149,13 +150,14 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
          GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
          if (account != null){
              if (loginPresenter != null) {
-                 loginPresenter.onLoginSuccess();
+                 loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName()));
              }
          }else{
              // Chequear facebook
              if (AccessToken.getCurrentAccessToken() != null){
                  if (loginPresenter != null) {
-                     loginPresenter.onLoginSuccess();
+                     Profile profile = Profile.getCurrentProfile();
+                     loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName()));
                  }
              }
          }
