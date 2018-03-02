@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cl.gerardomascayano.appfiestas.LoginActivity">
+    tools:context="cl.gerardomascayano.appfiestas.view.LoginActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -33,22 +33,28 @@
             android:orientation="vertical"
             android:padding="50dp">
 
-            <com.facebook.login.widget.LoginButton
+            <Button
                 android:id="@+id/btn_login_facebook"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:layout_height="48dp"
                 android:layout_marginBottom="6dp"
-                android:textSize="16dp"/>
+                android:background="@drawable/background_btn_facebook"
+                android:drawableStart="@drawable/ic_facebook_logo"
+                android:padding="8dp"
+                android:text="Iniciar sesión con Facebook"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
 
             <Button
                 android:id="@+id/btn_login_google"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Login Google" />
+                android:layout_height="48dp"
+                android:background="@drawable/background_btn_google"
+                android:drawableStart="@drawable/ic_google_icon"
+                android:padding="8dp"
+                android:text="Iniciar sesión con Google"
+                android:textColor="@color/textBtnGoogle"
+                android:textSize="12dp" />
 
         </LinearLayout>
 

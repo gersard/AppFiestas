@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import cl.gerardomascayano.appfiestas.LoginActivity;
+import com.facebook.CallbackManager;
+
+import cl.gerardomascayano.appfiestas.view.LoginActivity;
 import cl.gerardomascayano.appfiestas.model.interactor.InterfacesInteractor;
 import cl.gerardomascayano.appfiestas.model.interactor.LoginInteractorImpl;
 import cl.gerardomascayano.appfiestas.view.InterfacesView;
@@ -38,8 +40,10 @@ public class LoginPresenterImpl implements InterfacesPresenter.LoginPresenter{
     }
 
     @Override
-    public void onLoginWithFacebook() {
-
+    public void onLoginWithFacebook(Activity activity, CallbackManager callbackManager) {
+        if (loginInteractor != null) {
+            loginInteractor.loginWithFacebook(activity, callbackManager);
+        }
     }
 
     @Override

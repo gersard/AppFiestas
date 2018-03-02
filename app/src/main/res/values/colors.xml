@@ -7,10 +7,11 @@
 
     <!--LOGIN-->
     <color name="textLoginGray">#b9ffffff</color>
-
-
-
-
+    <color name="btnFacebookBackgroundUnpress">#3b5897</color>
+    <color name="btnFacebookBackgroundPress">#324c83</color>
+    <color name="btnGoogleBackgroundUnpress">#ffffff</color>
+    <color name="btnGoogleBackgroundPress">#eaeaea</color>
+    <color name="textBtnGoogle">#757575</color>
 
 
 

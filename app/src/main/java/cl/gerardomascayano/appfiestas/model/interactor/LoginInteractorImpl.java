@@ -3,8 +3,18 @@ package cl.gerardomascayano.appfiestas.model.interactor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -12,7 +22,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import cl.gerardomascayano.appfiestas.LoginActivity;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+
+import cl.gerardomascayano.appfiestas.view.LoginActivity;
 import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
 
 /**
@@ -28,7 +42,73 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
     }
 
     @Override
-    public void loginWithFacebook() {
+    public void loginWithFacebook(Activity activity, CallbackManager callbackManager) {
+        //        mBtnLoginFacebook.setReadPermissions("email", "user_friends", "public_profile");
+//        mBtnLoginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+//                    @Override
+//                    public void onCompleted(JSONObject object, GraphResponse response) {
+//                        Log.d("respuesta", object.toString());
+//                    }
+//                });
+//
+//                Bundle parameters = new Bundle();
+//                parameters.putString("fields", "id,email,birthday,friends");
+//                request.setParameters(parameters);
+//                request.executeAsync();
+//
+//                Profile profile = Profile.getCurrentProfile();
+//                Log.d("respuesta_profile", "First Name:" + profile.getFirstName());
+//                Log.d("respuesta_profile", "Last Name:" + profile.getLastName());
+//                Log.d("respuesta_profile", "Name:" + profile.getName());
+//                Log.d("respuesta_profile", "First Name:" + profile.getProfilePictureUri(800, 600));
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                if (loginPresenter != null) {
+//                    loginPresenter.onLoginError("Error: "+error.getMessage());
+//                }
+//            }
+//        });
+
+
+        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("email", "user_friends", "public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Profile profile = Profile.getCurrentProfile();
+                Log.d("respuesta_profile", "First Name:" + profile.getFirstName());
+                Log.d("respuesta_profile", "Last Name:" + profile.getLastName());
+                Log.d("respuesta_profile", "Name:" + profile.getName());
+                Log.d("respuesta_profile", "First Name:" + profile.getProfilePictureUri(800, 600));
+
+                if (loginPresenter != null) {
+                    loginPresenter.onLoginSuccess();
+                }
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                if (loginPresenter != null) {
+                    loginPresenter.onLoginError("Error: "+error.getMessage());
+                }
+            }
+        });
+
 
     }
 
@@ -78,6 +158,11 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
              }
          }else{
              // Chequear facebook
+             if (AccessToken.getCurrentAccessToken() != null){
+                 if (loginPresenter != null) {
+                     loginPresenter.onLoginSuccess();
+                 }
+             }
          }
 
 

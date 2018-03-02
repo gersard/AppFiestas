@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.facebook.CallbackManager;
+
 /**
  * Created by Gerardo on 01-03-2018.
  */
@@ -14,7 +16,7 @@ public class InterfacesPresenter {
     public interface LoginPresenter{
         void onLoginSuccess();
         void onLoginError(String error);
-        void onLoginWithFacebook();
+        void onLoginWithFacebook(Activity activity, CallbackManager callbackManager);
         void onLoginwithGoogle(Activity activity);
         void onLoginActivityResult(int requestCode,Intent data);
         void onCheckLogged(Context context);
