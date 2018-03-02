@@ -29,8 +29,9 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cl.gerardomascayano.appfiestas.view.InterfacesView;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements InterfacesView.LoginView {
 
     @BindView(R.id.logo_login)
     ImageView mLogoLogin;
@@ -140,5 +141,15 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    @Override
+    public void loginSuccess() {
+
+    }
+
+    @Override
+    public void loginError(String error) {
+
     }
 }
