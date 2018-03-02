@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -29,9 +30,13 @@ import org.json.JSONObject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
+import cl.gerardomascayano.appfiestas.presenter.LoginPresenterImpl;
 import cl.gerardomascayano.appfiestas.view.InterfacesView;
 
 public class LoginActivity extends AppCompatActivity implements InterfacesView.LoginView {
+
+    public static final int REQUEST_LOGIN_GOOGLE = 100;
 
     @BindView(R.id.logo_login)
     ImageView mLogoLogin;
@@ -39,42 +44,45 @@ public class LoginActivity extends AppCompatActivity implements InterfacesView.L
     LoginButton mBtnLoginFacebook;
 
     private CallbackManager callbackManager;
+    private InterfacesPresenter.LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        loginPresenter = new LoginPresenterImpl(this);
+        loginPresenter.onCheckLogged(getApplicationContext());
         loginwithFacebook();
     }
 
 
-
     // FACEBOOK
     private void loginwithFacebook() {
+        loginPresenter.onLoginWithFacebook();
         boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
         callbackManager = CallbackManager.Factory.create();
-        mBtnLoginFacebook.setReadPermissions("email","user_friends","public_profile");
+        mBtnLoginFacebook.setReadPermissions("email", "user_friends", "public_profile");
         mBtnLoginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
-                        Log.d("respuesta",object.toString());
+                        Log.d("respuesta", object.toString());
                     }
                 });
 
                 Bundle parameters = new Bundle();
-                parameters.putString("fields","id,email,birthday,friends");
+                parameters.putString("fields", "id,email,birthday,friends");
                 request.setParameters(parameters);
                 request.executeAsync();
 
                 Profile profile = Profile.getCurrentProfile();
-                Log.d("respuesta_profile","First Name:"+profile.getFirstName());
-                Log.d("respuesta_profile","Last Name:"+profile.getLastName());
-                Log.d("respuesta_profile","Name:"+profile.getName());
-                Log.d("respuesta_profile","First Name:"+profile.getProfilePictureUri(800,600));
+                Log.d("respuesta_profile", "First Name:" + profile.getFirstName());
+                Log.d("respuesta_profile", "Last Name:" + profile.getLastName());
+                Log.d("respuesta_profile", "Name:" + profile.getName());
+                Log.d("respuesta_profile", "First Name:" + profile.getProfilePictureUri(800, 600));
             }
 
             @Override
@@ -92,21 +100,9 @@ public class LoginActivity extends AppCompatActivity implements InterfacesView.L
     // GOOGLE
     @OnClick(R.id.btn_login_google)
     public void onBtnLoginGoogleClicked() {
-
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        // GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        // updateUI(account);
-
-        GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .requestProfile()
-                .build();
-
-        GoogleSignInClient signInClient = GoogleSignIn.getClient(getApplicationContext(), signInOptions);
-
-        startActivityForResult(signInClient.getSignInIntent(), 100);
-
+        if (loginPresenter != null) {
+            loginPresenter.onLoginwithGoogle(LoginActivity.this);
+        }
     }
 
     // CREAR CUENTA
@@ -119,37 +115,25 @@ public class LoginActivity extends AppCompatActivity implements InterfacesView.L
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode,resultCode,data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 100) {
-
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                try {
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
-                    Log.d("NFO", "Email: " + account.getEmail());
-                    Log.d("NFO", "Display Name: " + account.getDisplayName());
-                    Log.d("NFO", "Given Name: " + account.getGivenName());
-                    Log.d("NFO", "Photo Uri: " + account.getPhotoUrl());
-//                    Log.d("NFO","Photo Uri: "+account.getAccount().name);
-
-                } catch (ApiException e) {
-                    e.printStackTrace();
-                    Log.w("ErrorAuth", "signInResult:failed code=" + e.getStatusCode());
+            if (requestCode == REQUEST_LOGIN_GOOGLE) {
+                if (loginPresenter != null) {
+                    loginPresenter.onLoginActivityResult(requestCode, data);
                 }
-
             }
         }
     }
 
     @Override
     public void loginSuccess() {
-
+        Toast.makeText(this, "Login Exitoso", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void loginError(String error) {
-
+        Toast.makeText(this, "Login Error: "+error, Toast.LENGTH_SHORT).show();
     }
 }
