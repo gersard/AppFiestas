@@ -1,15 +1,13 @@
-package cl.gerardomascayano.appfiestas.view;
+package cl.gerardomascayano.appfiestas.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,6 +15,7 @@ import butterknife.OnClick;
 import cl.gerardomascayano.appfiestas.R;
 import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
 import cl.gerardomascayano.appfiestas.presenter.LoginPresenterImpl;
+import cl.gerardomascayano.appfiestas.view.InterfacesView;
 
 public class LoginActivity extends AppCompatActivity implements InterfacesView.LoginView {
 

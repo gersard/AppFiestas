@@ -3,15 +3,12 @@ package cl.gerardomascayano.appfiestas.model.interactor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -22,11 +19,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import org.json.JSONObject;
-
 import java.util.Arrays;
 
-import cl.gerardomascayano.appfiestas.view.LoginActivity;
+import cl.gerardomascayano.appfiestas.view.activity.LoginActivity;
 import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
 
 /**

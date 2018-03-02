@@ -1,4 +1,4 @@
-package cl.gerardomascayano.appfiestas.view;
+package cl.gerardomascayano.appfiestas.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

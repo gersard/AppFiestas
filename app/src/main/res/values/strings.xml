@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">AppFiestas</string>
     <string name="action_settings">Settings</string>
+
+    <!--LOGIN-->
+    <string name="btn_login_facebook">Iniciar sesión con Facebook</string>
+    <string name="btn_login_google">Iniciar sesión con Google</string>
+    <string name="btn_login_crear_cuenta">Crear Cuenta</string>
+
+    <!--ACTUALIZAR DATOS-->
+    <string name="title_actualizar_datos">Actualizar Datos</string>
+
+
+
+    <!--CONTENT DESCRIPTION DE IMAGE'S VIEW-->
+    <string name="content_description_avatar">Imagén del usuario</string>
+
+
 </resources>

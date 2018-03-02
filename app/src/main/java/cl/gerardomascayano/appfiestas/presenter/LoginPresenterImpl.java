@@ -6,7 +6,7 @@ import android.content.Intent;
 
 import com.facebook.CallbackManager;
 
-import cl.gerardomascayano.appfiestas.view.LoginActivity;
+import cl.gerardomascayano.appfiestas.view.activity.LoginActivity;
 import cl.gerardomascayano.appfiestas.model.interactor.InterfacesInteractor;
 import cl.gerardomascayano.appfiestas.model.interactor.LoginInteractorImpl;
 import cl.gerardomascayano.appfiestas.view.InterfacesView;
