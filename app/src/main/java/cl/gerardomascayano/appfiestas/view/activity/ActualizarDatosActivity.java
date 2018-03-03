@@ -21,6 +21,7 @@ import cl.gerardomascayano.appfiestas.model.Account;
 import cl.gerardomascayano.appfiestas.presenter.ActualizarDatosPresenterImpl;
 import cl.gerardomascayano.appfiestas.presenter.InterfacesPresenter;
 import cl.gerardomascayano.appfiestas.util.Funciones;
+import cl.gerardomascayano.appfiestas.util.ui.CircleTransformPicasso;
 import cl.gerardomascayano.appfiestas.view.InterfacesView;
 
 public class ActualizarDatosActivity extends AppCompatActivity implements InterfacesView.ActualizarDatosView{
@@ -53,7 +54,9 @@ public class ActualizarDatosActivity extends AppCompatActivity implements Interf
                 if (currentAccount != null) {
                     mEditNombre.setText(currentAccount.getName());
                     mEditEmail.setText(currentAccount.getEmail());
-                    Picasso.with(getApplicationContext()).load(currentAccount.getImageUrl()).into(mIvAcatar);
+                    Picasso.with(getApplicationContext()).load(currentAccount.getImageUrl())
+                            .transform(new CircleTransformPicasso())
+                            .into(mIvAcatar);
                 }
             }
         }catch (NullPointerException e){

@@ -133,7 +133,10 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
 
 //                    Log.d("NFO","Photo Uri: "+account.getAccount().name);
             if (loginPresenter != null) {
-                loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName(),account.getPhotoUrl().toString()));
+                String email = account.getEmail();
+                String displayName = account.getDisplayName();
+                String photoUrl = (account.getPhotoUrl() != null) ? account.getPhotoUrl().toString() : "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png?hl=es";
+                loginPresenter.onLoginSuccess(new Account(email, displayName, photoUrl));
             }
 
         } catch (ApiException e) {
@@ -152,14 +155,18 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
          GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
          if (account != null){
              if (loginPresenter != null) {
-                 loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName(), account.getPhotoUrl().toString()));
+                 String email = account.getEmail();
+                 String displayName = account.getDisplayName();
+                 String photoUrl = (account.getPhotoUrl() != null) ? account.getPhotoUrl().toString() : "https://developers.google.com/maps/documentation/streetview/images/error-image-generic.png?hl=es";
+                 loginPresenter.onLoginSuccess(new Account(email, displayName, photoUrl));
              }
          }else{
              // Chequear facebook
              if (AccessToken.getCurrentAccessToken() != null){
                  if (loginPresenter != null) {
                      Profile profile = Profile.getCurrentProfile();
-                     loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName(),profile.getProfilePictureUri(800,600).toString()));
+                     String name = profile.getName();
+                     loginPresenter.onLoginSuccess(new Account("email-facebook", name,profile.getProfilePictureUri(800,600).toString()));
                  }
              }
          }
