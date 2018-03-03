@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">AppFiestas</string>
-    <string name="action_settings">Settings</string>
+
+    <!--MENU-->
+    <string name="action_perfil">Perfil</string>
+    <string name="action_eventos">Eventos</string>
+    <string name="action_amigos">Amigos</string>
+
+    <!--LOGIN-->
+    <string name="btn_login_facebook">Iniciar sesión con Facebook</string>
+    <string name="btn_login_google">Iniciar sesión con Google</string>
+    <string name="btn_login_crear_cuenta">Crear Cuenta</string>
+
+    <!--ACTUALIZAR DATOS-->
+    <string name="title_actualizar_datos">Actualizar Datos</string>
+
+
+    <!--CONTENT DESCRIPTION DE IMAGE'S VIEW-->
+    <string name="content_description_avatar">Imagén del usuario</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

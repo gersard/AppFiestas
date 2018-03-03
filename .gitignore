@@ -12,6 +12,10 @@
 # Java class files
 *.class
 
+# Private files
+app/google-services.json
+app/src/main/res/values/private_strings.xml
+
 # Generated files
 bin/
 gen/

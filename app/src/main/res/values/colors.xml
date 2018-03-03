@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+
+    <!--GENERAL-->
+    <color name="colorPrimary">#C42732</color>
+    <color name="colorPrimaryDark">#af252e</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--MATERIAL DESIGN-->
+    <color name="textColorGray300">#e0e0e0</color>
+    <color name="textColorGray400">#bdbdbd</color>
+    <color name="textColorGray500">#9e9e9e</color>
+    <color name="textColorGray600">#757575</color>
+    <color name="white">#ffffff</color>
+
+    <!--LOGIN-->
+    <color name="textLoginGray">#b9ffffff</color>
+    <color name="btnFacebookBackgroundUnpress">#3b5897</color>
+    <color name="btnFacebookBackgroundPress">#324c83</color>
+    <color name="btnGoogleBackgroundUnpress">#ffffff</color>
+    <color name="btnGoogleBackgroundPress">#eaeaea</color>
+    <color name="textBtnGoogle">#757575</color>
+
+
+    <!--ACTUALIZAR DATOS-->
+    <color name="solidEditActualizarDatos">#b3ffffff</color>
+
+
+
 </resources>

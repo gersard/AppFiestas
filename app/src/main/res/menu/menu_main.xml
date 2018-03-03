@@ -1,10 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="cl.gerardomascayano.appfiestas.MainActivity">
+    tools:context="cl.gerardomascayano.appfiestas.view.activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_perfil"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_perfil"
+        android:icon="@drawable/ic_profile_white"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_eventos"
+        android:orderInCategory="100"
+        android:title="@string/action_eventos"
+        android:icon="@drawable/ic_map_white"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_amigos"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_friends_white"
+        android:title="@string/action_amigos"
         app:showAsAction="never" />
 </menu>

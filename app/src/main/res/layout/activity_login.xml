@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cl.gerardomascayano.appfiestas.LoginActivity">
+    tools:context="cl.gerardomascayano.appfiestas.view.activity.LoginActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_login" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_login_crear_cuenta"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/logo_login"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:padding="50dp">
+
+            <Button
+                android:id="@+id/btn_login_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/background_btn_facebook"
+                android:drawableStart="@drawable/ic_facebook_logo"
+                android:padding="8dp"
+                android:text="@string/btn_login_facebook"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_login_google"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/background_btn_google"
+                android:drawableStart="@drawable/ic_google_icon"
+                android:padding="8dp"
+                android:text="@string/btn_login_google"
+                android:textColor="@color/textBtnGoogle"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login_crear_cuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:text="@string/btn_login_crear_cuenta"
+        android:textAllCaps="true"
+        android:textColor="@color/textLoginGray"
+        android:textSize="17dp" />
+
+</RelativeLayout>
