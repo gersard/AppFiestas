@@ -22,4 +22,14 @@ public class InterfacesView {
         void dismissProgress();
     }
 
+    // EVENTOS
+    public interface EventosView{
+
+    }
+
+    // PERFIL
+    public interface PerfilView{
+
+    }
+
 }
