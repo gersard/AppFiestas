@@ -24,4 +24,11 @@ public class InterfacesPresenter {
         void onCheckLogged(Context context);
     }
 
+    // ACTUALIZAR DATOS
+    public interface ActualizarDatosPresenter{
+        void updateSuccess();
+        void updateError(String error);
+        void updateData(Account account);
+    }
+
 }

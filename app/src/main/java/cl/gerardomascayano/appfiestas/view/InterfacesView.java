@@ -14,4 +14,12 @@ public class InterfacesView {
         void loginError(String error);
     }
 
+    // ACTUALIZAR DATOS
+    public interface ActualizarDatosView{
+        void updateSuccess();
+        void updateError(String error);
+        void showProgress();
+        void dismissProgress();
+    }
+
 }

@@ -3,6 +3,7 @@ package cl.gerardomascayano.appfiestas.model.interactor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import com.facebook.AccessToken;
@@ -87,7 +88,7 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
                 Log.d("respuesta_profile", "First Name:" + profile.getProfilePictureUri(800, 600));
 
                 if (loginPresenter != null) {
-                    loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName()));
+                    loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName(), profile.getProfilePictureUri(800,600).toString()));
                 }
 
             }
@@ -128,10 +129,11 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
             Log.d("NFO", "Email: " + account.getEmail());
             Log.d("NFO", "Display Name: " + account.getDisplayName());
             Log.d("NFO", "Given Name: " + account.getGivenName());
-            Log.d("NFO", "Photo Uri: " + account.getPhotoUrl());
+//            Log.d("NFO", "Photo Uri: " + account.getPhotoUrl().getPath());
+
 //                    Log.d("NFO","Photo Uri: "+account.getAccount().name);
             if (loginPresenter != null) {
-                loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName()));
+                loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName(),account.getPhotoUrl().toString()));
             }
 
         } catch (ApiException e) {
@@ -150,14 +152,14 @@ public class LoginInteractorImpl implements InterfacesInteractor.LoginInteractor
          GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
          if (account != null){
              if (loginPresenter != null) {
-                 loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName()));
+                 loginPresenter.onLoginSuccess(new Account(account.getEmail(),account.getDisplayName(), account.getPhotoUrl().toString()));
              }
          }else{
              // Chequear facebook
              if (AccessToken.getCurrentAccessToken() != null){
                  if (loginPresenter != null) {
                      Profile profile = Profile.getCurrentProfile();
-                     loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName()));
+                     loginPresenter.onLoginSuccess(new Account("email-facebook",profile.getName(),profile.getProfilePictureUri(800,600).toString()));
                  }
              }
          }

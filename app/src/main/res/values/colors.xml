@@ -11,6 +11,7 @@
     <color name="textColorGray400">#bdbdbd</color>
     <color name="textColorGray500">#9e9e9e</color>
     <color name="textColorGray600">#757575</color>
+    <color name="white">#ffffff</color>
 
     <!--LOGIN-->
     <color name="textLoginGray">#b9ffffff</color>
