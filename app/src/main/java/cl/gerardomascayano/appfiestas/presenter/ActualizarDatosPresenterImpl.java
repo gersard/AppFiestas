@@ -35,7 +35,7 @@ public class ActualizarDatosPresenterImpl implements InterfacesPresenter.Actuali
             public void run() {
                 try {
                     Thread.sleep(3000);
-                    view.updateError("Error");
+                    view.updateSuccess();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

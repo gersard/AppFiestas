@@ -1,5 +1,6 @@
 package cl.gerardomascayano.appfiestas.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -79,6 +80,10 @@ public class ActualizarDatosActivity extends AppCompatActivity implements Interf
                 @Override
                 public void run() {
                     loadToast.success();
+                    Intent intent = new Intent(ActualizarDatosActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
                 }
             });
 
